@@ -156,7 +156,12 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging:24.1.0")
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 
+    // Exclude androidsvg JAR to prevent duplicate with androidsvg-aar
+    configurations.all {
+        exclude group: 'com.caverock', module: 'androidsvg'
+    }
     def isGifEnabled = (findProperty('expo.gif.enabled') ?: "") == "true";
     def isWebpEnabled = (findProperty('expo.webp.enabled') ?: "") == "true";
     def isWebpAnimatedEnabled = (findProperty('expo.webp.animated') ?: "") == "true";
