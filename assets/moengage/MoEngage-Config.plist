@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>IsSdkAutoInitialisationEnabled</key>
+  <true/>
+  <key>AnalyticsEnablePeriodicFlush</key>
+  <true/>
+  <key>AnalyticsPeriodicFlushDuration</key>
+  <integer>30</integer>
+  <key>AppGroupName</key>
+  <string>group.com.fitcircle.oziva.MoEngage</string>
+  <key>CustomBaseDomain</key>
+  <string></string>
+  <key>DataCenter</key>
+  <integer>1</integer>
+  <key>EncryptionEncodedLiveKey</key>
+  <string></string>
+  <key>EncryptionEncodedTestKey</key>
+  <string></string>
+  <key>InAppDisplaySafeAreaInset</key>
+  <real>0</real>
+  <key>InAppShouldProvideDeeplinkCallback</key>
+  <false/>
+  <key>IntegrationPartner</key>
+  <string>none</string>
+  <key>IsJwtEnabled</key>
+  <false/>
+  <key>IsLoggingEnabled</key>
+  <true/>
+  <key>IsNetworkEncryptionEnabled</key>
+  <false/>
+  <key>IsStorageEncryptionEnabled</key>
+  <false/>
+  <key>IsTestEnvironment</key>
+  <string>$(SWIFT_ACTIVE_COMPILATION_CONDITIONS)|$(GCC_PREPROCESSOR_DEFINITIONS)</string>
+  <key>IsUserRegistrationEnabled</key>
+  <false/>
+  <key>KeychainGroupName</key>
+  <string></string>
+  <key>LogLevel</key>
+  <integer>4</integer>
+  <key>ProjectId</key>
+  <string></string>
+  <key>WorkspaceId</key>
+  <string>Z4JGV1DYJZ1TC2TYDLCBC93G</string>
+</dict>
+</plist>
