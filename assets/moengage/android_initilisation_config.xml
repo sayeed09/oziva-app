@@ -24,7 +24,7 @@
     <integer name="com_moengage_push_notification_token_retry_interval">60</integer>
     <drawable name="com_moengage_push_notification_small_icon">@drawable/small_icon</drawable>
     <drawable name="com_moengage_push_notification_large_icon">@drawable/large_icon</drawable>
-    <color name="com_moengage_push_notification_color">#00000</color>
+    <color name="com_moengage_push_notification_color">#000000</color>
     <bool name="com_moengage_push_multiple_notification_in_drawer_enabled">false</bool>
     <bool name="com_moengage_push_building_back_stack_enabled">false</bool>
     <bool name="com_moengage_push_large_icon_display_enabled">true</bool>

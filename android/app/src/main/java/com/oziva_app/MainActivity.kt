@@ -1,4 +1,4 @@
-package com.sayeed_fit.OZiva
+package com.oziva_app
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

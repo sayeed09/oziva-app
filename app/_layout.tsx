@@ -1,4 +1,5 @@
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import analytics from '@react-native-firebase/analytics';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -38,8 +39,21 @@ export default function RootLayout() {
       new MoEGeoLocation(90.00001, 180.00001)
     );
     ReactMoE.trackEvent("TestEvent2", properties);
+
+    getCheck();
+
     fetch('https://httpbin.org/get');
   }, []);
+  const getCheck = async () => {
+    const appInstanceId = await analytics().getAppInstanceId();
+    console.log(appInstanceId, 'appInstanceId')
+    await analytics().logEvent('add_to_cart', {
+      id: 3745092,
+      item: 'mens grey t-shirt',
+      description: ['round neck', 'long sleeved'],
+      size: 'L',
+    })
+  }
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>

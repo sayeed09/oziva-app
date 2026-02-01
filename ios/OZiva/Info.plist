@@ -28,7 +28,13 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>oziva</string>
-          <string>com.sayeed-fit.OZiva</string>
+          <string>com.fitcircle.oziva</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>com.googleusercontent.apps.330129262031-kb98bm6976g0utudvg028jkfe2hno1nv</string>
         </array>
       </dict>
     </array>
