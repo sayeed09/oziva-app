@@ -2813,7 +2813,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - RNCAsyncStorage (1.24.0):
+  - RNCAsyncStorage (2.2.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -3983,7 +3983,7 @@ SPEC CHECKSUMS:
   ReactCommon: 5cfd842fcd893bb40fc835f98fadc60c42906a20
   ReactNativeExceptionHandler: b11ff67c78802b2f62eed0e10e75cb1ef7947c60
   ReactNativeMoEngage: 6be13d9c1a7c65450b0db407a782a78cf3920e89
-  RNCAsyncStorage: 7c9d6b389e2977ffe92fe8cafbea77974649c72b
+  RNCAsyncStorage: 8857fb173af29664cb90897903902dc8533e36cc
   RNCClipboard: 4eea71d801c880175c12f6ab14332ca86fed935f
   RNCMaskedView: 8bfc13a356455b15d56114738f4d2a804769c1bf
   RNDateTimePicker: 239dc0c70f94e440d815763d3bace9c4ea73ae27
