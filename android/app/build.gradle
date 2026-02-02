@@ -1,6 +1,8 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 def projectRoot = rootDir.getAbsoluteFile().getParentFile().getAbsolutePath()
 
@@ -130,6 +132,14 @@ android {
     androidResources {
         ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~'
     }
+    packagingOptions {
+        pickFirst 'lib/x86/libc++_shared.so'      
+        pickFirst 'lib/x86_64/libjsc.so'
+        pickFirst 'lib/arm64-v8a/libjsc.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/x86_64/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+   }
 }
 
 // Apply static values from `gradle.properties` to the `android.packagingOptions`
@@ -153,15 +163,21 @@ android {
 }
 
 dependencies {
-    implementation("com.google.firebase:firebase-messaging:24.1.0")
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+    implementation("androidx.core:core:1.9.0")
+    implementation("androidx.appcompat:appcompat:1.4.2")
+    implementation("androidx.lifecycle:lifecycle-process:2.7.0")
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 
     // Exclude androidsvg JAR to prevent duplicate with androidsvg-aar
     configurations.all {
         exclude group: 'com.caverock', module: 'androidsvg'
     }
+
+    implementation("com.moengage:moe-android-sdk:12.4.03")
+    implementation("com.moengage:rich-notification:3.1.1")
+
     def isGifEnabled = (findProperty('expo.gif.enabled') ?: "") == "true";
     def isWebpEnabled = (findProperty('expo.webp.enabled') ?: "") == "true";
     def isWebpAnimatedEnabled = (findProperty('expo.webp.animated') ?: "") == "true";
@@ -186,6 +202,3 @@ dependencies {
         implementation jscFlavor
     }
 }
-
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
