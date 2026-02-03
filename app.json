@@ -74,6 +74,19 @@
             "buildReactNativeFromSource": true
           }
         }
+      ],
+      [
+        "react-native-fbsdk-next",
+        {
+          "appID": "327925112148720",
+          "clientToken": "b79608a0b7040eceeea67aa659eb71a3",
+          "displayName": "OZiva",
+          "scheme": "fb327925112148720",
+          "advertiserIDCollectionEnabled": false,
+          "autoLogAppEventsEnabled": false,
+          "isAutoInitEnabled": true,
+          "iosUserTrackingPermission": "This identifier will be used to deliver personalized ads to you."
+        }
       ]
     ],
     "experiments": {
