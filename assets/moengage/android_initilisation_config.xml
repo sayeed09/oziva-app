@@ -32,7 +32,7 @@
     <bool name="com_moengage_fcm_registration_enabled">false</bool>
     <bool name="com_moengage_push_kit_registration_enabled">true</bool>
     <integer name="com_moengage_core_log_level">5</integer>
-    <bool name="com_moengage_core_log_enabled_for_release_build">true</bool>
+    <bool name="com_moengage_core_log_enabled_for_release_build">false</bool>
     <bool name="com_moengage_core_carrier_tracking_enabled">true</bool>
     <bool name="com_moengage_core_device_attribute_tracking_enabled">true</bool>
     <string-array name="com_moengage_core_screen_tracking_opt_out_activities" />

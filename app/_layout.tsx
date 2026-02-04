@@ -67,7 +67,6 @@ export default function RootLayout() {
       } else {
         ReactMoE.registerForPush();
       }
-      ReactMoE.identifyUser('5398515089467');
     }
   }
   return (
