@@ -5,6 +5,54 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "constants/*": [
+        "./src/constants/*"
+      ],
+      "*": [
+        "./src/*"
+      ],
+      "@actions/*": [
+        "./src/actions/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@containers/*": [
+        "./src/containers/*"
+      ],
+      "@context/*": [
+        "./src/context/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@models/*": [
+        "./src/models/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@test/*": [
+        "./src/test/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@routes/*": [
+        "./src/routes/*"
+      ],
+      "@reducers/*": [
+        "./src/reducers/*"
       ]
     }
   },

@@ -4,7 +4,7 @@
     "slug": "OZiva",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/ic_launcher_round.png",
     "scheme": "oziva",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
