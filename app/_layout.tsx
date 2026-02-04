@@ -54,8 +54,7 @@ export default function RootLayout() {
   }, []);
 
   const initializeMoe = () => {
-    const moeAppId = process.env.EXPO_MOE_APP_ID;
-    console.log(moeAppId, 'moeAppId')
+    const moeAppId = 'Z4JGV1DYJZ1TC2TYDLCBC93G';
     if (moeAppId) {
       const moEInitConfig = new MoEInitConfig(
         MoEPushConfig.defaultConfig(),
@@ -68,7 +67,7 @@ export default function RootLayout() {
       } else {
         ReactMoE.registerForPush();
       }
-      console.log(moeAppId, 'moeAppId')
+      ReactMoE.identifyUser('5398515089467');
     }
   }
   return (

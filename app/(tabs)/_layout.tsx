@@ -11,7 +11,7 @@ import ProfileIconLined from 'assets/images/icons/bottom-navigation/lined/profil
 import BackIcon from 'components/styled/header/back-icon';
 import HeaderLeft from 'components/styled/header/header-Left';
 import HeaderRight from 'components/styled/header/header-right';
-import { Tabs } from 'expo-router';
+import { router, Tabs } from 'expo-router';
 import React from 'react';
 import { trackMoEngageAppEvent } from 'utils/common';
 
@@ -126,7 +126,9 @@ export default function TabLayout() {
           tabBarInactiveTintColor: 'gray',
           unmountOnBlur: true,
           headerLeft: () => (
-            <BackIcon onPress={() => navigation.navigate('HomeScreen')} navigation={navigation} title="Chat" />
+            <BackIcon onPress={() => router.push({
+              pathname: '/'
+            })} navigation={navigation} title="Chat" />
           ),
 
         })}
@@ -157,7 +159,7 @@ export default function TabLayout() {
           tabBarInactiveTintColor: 'gray',
           unmountOnBlur: true,
           headerLeft: () => (
-            <BackIcon onPress={() => navigation.navigate('HomeScreen')} navigation={navigation} title="Profile" />
+            <BackIcon onPress={() => router.push('/')} navigation={navigation} title="Profile" />
           ),
 
         })}

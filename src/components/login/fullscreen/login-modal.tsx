@@ -1,3 +1,10 @@
+import Loader from '@components/elements/loader/loader';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { setLoginModal } from 'actions/modals';
+import WhiteCross from 'assets/images/icons/white-crose';
+import OZModal from 'components/modal';
+import { useModalsDispatch } from 'context/modals';
+import { router } from 'expo-router';
 import React, { useRef, useState } from 'react';
 import {
   SafeAreaView,
@@ -6,18 +13,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { setLoginModal } from 'actions/modals';
-import OZModal from 'components/modal';
-import { useModalsDispatch, useModalsState } from 'context/modals';
+import { isIOS } from 'react-native-elements/dist/helpers';
 import { width } from 'utils/constants';
+import { screenView } from '../standard/login-modal';
 import Login from './login';
 import OTPInput from './otp-input';
 import ResendOTP from './resend-otp';
-import WhiteCross from 'assets/images/icons/white-crose';
-import Loader from '@components/elements/loader/loader';
-import { isIOS } from 'react-native-elements/dist/helpers';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { screenView } from '../standard/login-modal';
 
 const LoginModal = (): React.ReactElement => {
   const isFocused = useIsFocused();
@@ -89,7 +90,7 @@ const LoginModal = (): React.ReactElement => {
                   onPress={() => {
                     setShowPopUp(false);
                     modalsDispatch(setLoginModal(false));
-                    navigation.navigate('HomeScreen', {});
+                    router.push('/');
                   }}
                 >
                   <Text style={{ color: '#fff' }}>

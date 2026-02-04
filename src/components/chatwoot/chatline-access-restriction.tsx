@@ -1,6 +1,7 @@
-import React from 'react'
 import ChatWootWidget from 'components/chatwoot';
+import { router } from 'expo-router';
 import { ChatWootUser } from 'models/prime';
+import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 
@@ -83,10 +84,10 @@ const ChatlineAccessRestriction = (props: IProps) => {
                 screenName={props.screenName}
             /> : <View style={ChatlineStyle.container}>
                 <View style={ChatlineStyle.innerContainer}>
-                    <SvgUri style={ChatlineStyle.svg} uri={'https://cdn.shopify.com/s/files/1/2393/2199/files/no_chat_access.svg?v=1743758048'} width={70} height={65}/>
+                    <SvgUri style={ChatlineStyle.svg} uri={'https://cdn.shopify.com/s/files/1/2393/2199/files/no_chat_access.svg?v=1743758048'} width={70} height={65} />
                     <Text style={ChatlineStyle.primaryText}>Unlock 1 Month of Free Chat Access!🚀</Text>
                     <Text style={ChatlineStyle.secondaryText}>Purchase now and enjoy seamless conversations for free for a month!</Text>
-                    <Pressable onPress={() => props.navigation.navigate('Concerns')}>
+                    <Pressable onPress={() => router.push('/concerns')}>
                         <Text style={ChatlineStyle.shopNowButton}>SHOP NOW</Text>
                     </Pressable>
                 </View>
