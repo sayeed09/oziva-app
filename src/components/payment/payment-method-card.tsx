@@ -75,7 +75,7 @@ const PaymentMethodWhiteCard = ({
 
       RazorpayCheckout.open(options)
         .then(async data => {
-          // navigation.navigate('OrderInProgressScreen', {
+          // router.push('OrderInProgressScreen', {
           //   paymentId: data.razorpay_payment_id,
           // });
           router.push({
@@ -95,7 +95,7 @@ const PaymentMethodWhiteCard = ({
       checkoutDispatch(setIsPaymentProcessing(false));
       if (error?.response?.status === 401) {
         handleLogout();
-        navigation.navigate('CartScreen');
+        router.push('/CartScreen');
       }
     }
   };

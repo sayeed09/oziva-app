@@ -17,6 +17,7 @@ import { GATrackingService } from 'utils/ga-tracking';
 
 
 import FooterV2 from 'components/productv2/footer/footer';
+import { router } from 'expo-router';
 import { Product } from 'models/product';
 import PlanModal from './subscriptions/plan-modal';
 
@@ -193,7 +194,7 @@ const ProductFooter = (props: Props) => {
         skipGATrack: true,
       });
       setShowSubscriptionModal(false);
-      navigation ? navigation.navigate('CartScreen') : null;
+      navigation ? router.push('CartScreen') : null;
     } else {
       if (cartItems.some(item => item.id == Number(selectedVariant.id))) {
         cartDispatch(increaseQuantity(Number(selectedVariant.id)));
@@ -230,7 +231,7 @@ const ProductFooter = (props: Props) => {
       trackAddToCartMoEngageEvent();
       setLoadingBuyNow(false);
       setShowSubscriptionModal(false);
-      navigation.navigate('CartScreen');
+      router.push('/CartScreen');
     }
   };
 

@@ -68,7 +68,7 @@ const HomePage = ({ navigation }) => {
       if (url.includes('http')) {
         // Linking.openURL(url);
         crashlytics().log(`Opening URL in webview : ${JSON.stringify({ url, title })}`);
-        // navigation.navigate('BannerDeepLinksView', { uri: url, title });
+        // router.push('BannerDeepLinksView', { uri: url, title });
         router.push({
           pathname: '/BannerDeepLinksView',
           params: {
@@ -492,7 +492,7 @@ const HomePage = ({ navigation }) => {
           label: 'View Cart',
           color: 'red',
           onPress: () => {
-            navigation.navigate('CartScreen');
+            router.push('/CartScreen');
           },
         }}
         duration={1000}

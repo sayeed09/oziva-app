@@ -1,11 +1,11 @@
+import BackSvg from 'assets/images/icons/header-icons/back-icon';
 import React from 'react';
 import { Pressable, StyleProp, StyleSheet, TextStyle, View } from 'react-native';
 import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
-import BackSvg from 'assets/images/icons/header-icons/back-icon';
 import { AppStackDefinition } from 'routes/definitions';
 
-import { StyledButton } from '@components/base/button/styled';
 
+import { router } from 'expo-router';
 import { CustomText } from '../../../../AndroidFontFix';
 
 const styles = StyleSheet.create({
@@ -57,13 +57,10 @@ const BackIcon = ({
               flatListRef?.scrollTo({ y: 0 });
             }
             setTimeout(() => {
-              if (!navigation.canGoBack()) {
-                navigation.reset({
-                  index: 1,
-                  routes: [{ name: 'Home' }],
-                });
+              if (!router.canGoBack()) {
+                router.push("/")
               } else {
-                navigation.pop(goBackBy ?? 1);
+                router.push("/")
               }
             }, 100);
           })

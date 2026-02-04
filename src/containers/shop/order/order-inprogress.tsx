@@ -1,7 +1,7 @@
 import crashlytics from '@react-native-firebase/crashlytics';
 import { setIsPaymentProcessing, setPaymentError } from 'actions/checkout';
 import { useCheckoutDispatch } from 'context/checkout';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import useLogin from 'hooks/login';
 import React, { useEffect } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
@@ -50,11 +50,11 @@ const OrderInProgress = ({ navigation, route }: IProps) => {
             if (status === 'COMPLETED') {
                 clearInterval(pollingIntervalId);
                 clearTimeout(timeoutId);
-                navigation.navigate('OrderConfirmationScreen');
+                router.push('/OrderConfirmationScreen');
             } else if (status === 'FAILED') {
                 clearInterval(pollingIntervalId);
                 clearTimeout(timeoutId);
-                navigation.navigate('PaymentMethodScreen');
+                router.push('/PaymentMethodScreen');
             }
         }).catch(error => {
             checkoutDispatch(setPaymentError('payment error'));
@@ -63,7 +63,7 @@ const OrderInProgress = ({ navigation, route }: IProps) => {
             );
             if (error?.response?.status === 401) {
                 handleLogout();
-                navigation.navigate('CartScreen');
+                router.push('/CartScreen');
             }
         })
     };
@@ -74,7 +74,7 @@ const OrderInProgress = ({ navigation, route }: IProps) => {
             clearInterval(pollingIntervalId);
             checkoutDispatch(setPaymentError('payment error'));
             checkoutDispatch(setIsPaymentProcessing(false));
-            navigation.navigate('PaymentMethodScreen');
+            router.push('/PaymentMethodScreen');
         }, 60000);
         return () => {
             clearInterval(pollingIntervalId);

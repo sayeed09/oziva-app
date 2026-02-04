@@ -1,16 +1,17 @@
+import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import Toast from 'react-native-toast-message';
 import WebView from 'react-native-webview';
-import { AxiosError } from 'axios';
 
-import { loginSuccessful, setLoginModal } from '@actions/modals';
+import { setLoginModal } from '@actions/modals';
 import Loader from '@components/elements/loader/loader';
 import { FullPageErrorFallback } from '@components/shared/error';
 import { useModalsDispatch, useModalsState } from '@context/modals';
+import crashlytics from '@react-native-firebase/crashlytics';
+import { router } from 'expo-router';
+import useLogin from 'hooks/login';
 import { UserProfileResponseModel } from 'models/auth';
 import { getUserProfileDataService } from 'services/user';
-import useLogin from 'hooks/login';
-import crashlytics from '@react-native-firebase/crashlytics';
 
 const ChatContainer = ({
   route,
@@ -36,7 +37,7 @@ const ChatContainer = ({
         setLoading(false);
         if (error?.response?.status === 401){
           handleLogout();
-          navigation.navigate('CartScreen');
+          router.push('/CartScreen');
         }
       });
   }

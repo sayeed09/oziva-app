@@ -3,6 +3,7 @@ import SuccessMessageIconComponent from 'assets/images/icons/standard-icons/succ
 import CollectionBubbles from 'components/concern-categories/collection-bubbles';
 import ProductList from 'components/concern-categories/product-list';
 import { useShopDispatch, useShopState } from 'context/shop';
+import { router } from 'expo-router';
 import { snakeCase } from 'lodash';
 import {
   Collection,
@@ -119,7 +120,7 @@ const Categories = ({ route, navigation }) => {
           label: 'View Cart',
           color: 'red',
           onPress: () => {
-            navigation.navigate('CartScreen');
+            router.push('/CartScreen');
           },
         }}
         duration={1000}

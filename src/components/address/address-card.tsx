@@ -168,7 +168,7 @@ const AddressCard = ({
         <SecondaryButton
           title="CHANGE OR ADD ADDRESS"
           onAction={() => {
-            // navigation.navigate('Addresses', {
+            // router.push('Addresses', {
             //   isSubscription: isSubscription,
             //   screenName: 'CartScreen'
             // });

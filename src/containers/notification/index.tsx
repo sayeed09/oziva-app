@@ -42,7 +42,7 @@ const Notifications = ({ navigation }) => {
                 if (res?.url) {
                   if (res?.url.includes('http')) {
                     // Linking.openURL(url);
-                    // navigation.navigate('BannerDeepLinksView', {
+                    // router.push('BannerDeepLinksView', {
                     //   uri: res?.url,
                     //   title: res?.title || '',
                     // });

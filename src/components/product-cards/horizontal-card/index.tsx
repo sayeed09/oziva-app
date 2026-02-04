@@ -140,7 +140,7 @@ const HorizontalCard = ({
                               );
                               trackRemoveItemFromCart(productCardModel);
                               if (isSubscriptionItem) {
-                                // navigation && navigation.navigate('ProductDetails', {
+                                // navigation && router.push('ProductDetails', {
                                 //   queryString: JSON.stringify(productCardModel?.productId),
                                 //   productTitle: productCardModel?.title,
                                 //   variantId: productCardModel?.variantId as string,

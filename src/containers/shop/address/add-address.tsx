@@ -40,7 +40,7 @@ import {
 } from '@utils/common';
 import { setSubscriptionAddress } from 'actions/checkout';
 import { useModalsDispatch } from 'context/modals';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import useLogin from 'hooks/login';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { patchAddressService } from 'services/checkout';
@@ -248,7 +248,7 @@ const AddAddress = ({ navigation, route }): React.ReactElement => {
             console.log("Error : ", error);
             if (error?.response?.status === 401) {
                 handleLogout();
-                navigation.navigate(screenName === 'CartScreen' ? 'CartScreen' : 'ProfileScreen'); //To handle ProfileScreen and Checkout Screen navigation
+                router.push(screenName === 'CartScreen' ? '/CartScreen' : '/profile'); //To handle ProfileScreen and Checkout Screen navigation
             }
         }
     }
@@ -363,9 +363,9 @@ const AddAddress = ({ navigation, route }): React.ReactElement => {
                                             checkoutDispatch(
                                                 setSubscriptionAddress(userAddressPayloadToSave),
                                             );
-                                            navigation.navigate('SubscriptionAddressOrderSummary');
+                                            // router.push('SubscriptionAddressOrderSummary');
                                         } else {
-                                            navigation.navigate(
+                                            router.push(
                                                 navigateTo || 'AddressOrderSummaryScreen',
                                             );
                                         }
@@ -376,7 +376,7 @@ const AddAddress = ({ navigation, route }): React.ReactElement => {
                                         }
                                         if (error?.response?.status === 401) {
                                             handleLogout();
-                                            navigation.navigate(screenName === 'CartScreen' ? 'CartScreen' : 'ProfileScreen'); //To handle ProfileScreen and Checkout Screen navigation
+                                            router.push(screenName === 'CartScreen' ? '/CartScreen' : '/profile'); //To handle ProfileScreen and Checkout Screen navigation
                                         }
                                     }
                                 }}
@@ -417,7 +417,7 @@ const AddAddress = ({ navigation, route }): React.ReactElement => {
                                                     console.log(e, 'error fetching city and state');
                                                     if (e?.response?.status === 401) {
                                                         handleLogout();
-                                                        navigation.navigate(screenName === 'CartScreen' ? 'CartScreen' : 'ProfileScreen'); //To handle ProfileScreen and Checkout Screen navigation
+                                                        router.push(screenName === 'CartScreen' ? '/CartScreen' : '/profile'); //To handle ProfileScreen and Checkout Screen navigation
                                                     }
                                                 }
                                             } else {

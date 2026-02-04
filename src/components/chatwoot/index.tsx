@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text, TouchableHighlight, View } from 'react-native';
 import OZModal from 'components/modal';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, View } from 'react-native';
 import { storeHelper } from 'utils/chatwoot';
 
-import ChatWootWebviewComponent from './webview';
+import { setChatWootModal } from 'actions/modals';
 import BackIcon from 'components/styled/header/back-icon';
 import { useModalsDispatch } from 'context/modals';
-import { setChatWootModal } from 'actions/modals';
+import { router } from 'expo-router';
+import ChatWootWebviewComponent from './webview';
 
 interface Props {
   isModalVisible: boolean;
@@ -28,7 +29,7 @@ interface Props {
 const ChatWootWidget = (props: Props): React.ReactElement => {
 
   const modalsDispatch = useModalsDispatch();
-  
+
   const [cwCookie, setCookie] = useState('');
   useEffect(() => {
     async function fetchData() {
@@ -52,7 +53,7 @@ const ChatWootWidget = (props: Props): React.ReactElement => {
   const handleChatClose = () => {
     if (isConsult) {
       modalsDispatch(setChatWootModal(false))
-      navigation.goBack();
+      router.back();
     } else {
       closeModal(true);
     }

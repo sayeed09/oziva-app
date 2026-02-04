@@ -1,16 +1,15 @@
-import React from 'react';
-import { Pressable, StyleSheet, Text, TouchableNativeFeedback, View } from 'react-native';
-import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
 import CartSvg from '@assets/images/icons/header-icons/cart';
 import SearchSvg from '@assets/images/icons/header-icons/search';
 import { AppStackDefinition } from '@routes/definitions';
-import UserLineIconComponent from 'assets/images/icons/bottom-navigation/lined/user';
+import React from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
 
-import { StyledButton } from '@components/base/button/styled';
 import { useCartDispatch, useCartState } from '@context/cart/CartContext';
 import { useNotificationState } from '@context/notifications';
 import { trackMoEngageAppEvent } from '@utils/common';
 import { width } from '@utils/constants';
+import { router } from 'expo-router';
 
 const styles = StyleSheet.create({
   container: {
@@ -73,7 +72,7 @@ const HeaderRight = ({
                 values: [],
                 trackingTransparency,
               });
-              navigation.navigate('Search');
+              router.push('/Search');
             }}
           >
             <SearchSvg />
@@ -87,7 +86,7 @@ const HeaderRight = ({
                 values: [],
                 trackingTransparency,
               });
-              navigation.navigate('CartScreen');
+              router.push('/CartScreen');
             }}
           >
             <View style={{ paddingHorizontal: 10 }}>

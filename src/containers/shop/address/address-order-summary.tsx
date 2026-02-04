@@ -1,3 +1,8 @@
+import { setCartDeliveryCharge } from 'actions/cart';
+import { setPaymentMethod, setPaymentMethodsToShow, updateAddress } from 'actions/checkout';
+import { useAuthState } from 'context/auth';
+import { useNotificationState } from 'context/notifications';
+import { PaymentMethodType } from 'models/payment';
 import React, { useEffect, useState } from 'react';
 import {
   Pressable,
@@ -6,12 +11,6 @@ import {
   View,
 } from 'react-native';
 import ReactMoE from 'react-native-moengage';
-import { setCartDeliveryCharge } from 'actions/cart';
-import { setPaymentMethod, setPaymentMethodsToShow, updateAddress } from 'actions/checkout';
-import Loader from 'components/elements/loader/loader';
-import { useAuthState } from 'context/auth';
-import { useNotificationState } from 'context/notifications';
-import { PaymentMethodType } from 'models/payment';
 import { GATrackingService } from 'utils/ga-tracking';
 
 import OrderSummaryAccordion from '@components/order/order-summary-accordion';
@@ -24,20 +23,21 @@ import {
 } from '@utils/common';
 import { convertToRupees } from '@utils/currency-utils';
 
-import { getCartLineItems } from '../common';
-import { PrimeMemberShipType } from 'models/prime';
-import { userAuthCheckService } from 'services/user';
-import { incentiveAmountService } from 'services/checkout';
-import { IncentiveAmountPayload, IncentiveValue } from 'models/shop/checkout';
-import useLogin from 'hooks/login';
-import AddressList from './address-list';
 import PrimaryButton from 'components/elements/button/primary-Button';
+import { router } from 'expo-router';
+import useLogin from 'hooks/login';
+import { PrimeMemberShipType } from 'models/prime';
 import { UserAddress } from 'models/shop/address';
-import { styles } from 'styles/address';
-import AddAddress from './address-form';
-import { ShimmerButtonWrapper } from '../cart/cart-list/shimmer-effect';
-import FooterDetails from '../cart/cart-list/footer-details';
+import { IncentiveAmountPayload, IncentiveValue } from 'models/shop/checkout';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { incentiveAmountService } from 'services/checkout';
+import { userAuthCheckService } from 'services/user';
+import { styles } from 'styles/address';
+import FooterDetails from '../cart/cart-list/footer-details';
+import { ShimmerButtonWrapper } from '../cart/cart-list/shimmer-effect';
+import { getCartLineItems } from '../common';
+import AddAddress from './address-form';
+import AddressList from './address-list';
 
 const AddressOrderSummary = ({ navigation, route }): React.ReactElement => {
   const {
@@ -88,7 +88,7 @@ const AddressOrderSummary = ({ navigation, route }): React.ReactElement => {
       console.log("Error : ", err);
       if (err?.response?.status === 401) {
         handleLogout();
-        navigation.navigate('CartScreen');
+        router.push('/CartScreen');
       }
     })
   }
@@ -245,7 +245,7 @@ const AddressOrderSummary = ({ navigation, route }): React.ReactElement => {
     setErrorMessage('')
     if (!showShippingForm) {
       trackContinueShopping();
-      navigation.navigate('PaymentMethodScreen');
+      router.push('/PaymentMethodScreen');
     }
   }
   const handleEditAddress = (addressId) => {

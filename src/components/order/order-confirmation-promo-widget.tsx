@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { setChatWootModal, setLoginModal } from 'actions/modals';
+import { setChatWootModal } from 'actions/modals';
+import ChatlineAccessRestriction from 'components/chatwoot/chatline-access-restriction';
 import Loader from 'components/elements/loader/loader';
 import { useAuthState } from 'context/auth';
+import { useCartState } from 'context/cart/CartContext';
 import { useModalsDispatch, useModalsState } from 'context/modals';
+import { router } from 'expo-router';
+import useLogin from 'hooks/login';
+import { UserDetails, UserProfileResponseModel } from 'models/auth';
+import { ICustomAttributes } from 'models/chatwoot';
 import {
-  ChatWootUser,
-  PrimeUserDetails,
+  ChatWootUser
 } from 'models/prime';
+import React, { useEffect, useState } from 'react';
+import { Platform } from 'react-native';
+import { getUserProfileDataService, userAuthCheckService } from 'services/user';
 import {
   chatWootBaseURL,
   chatWootWebsiteToken,
   ozivaPrimeProductId,
 } from 'utils/constants';
 import { PrimeThankYou } from './order-confirmation-promo-thank-you/prime-member';
-import { useCartState } from 'context/cart/CartContext';
-import { Platform } from 'react-native';
-import { ICustomAttributes } from 'models/chatwoot';
-import { UserDetails, UserProfileResponseModel } from 'models/auth';
-import { getUserProfileDataService, userAuthCheckService } from 'services/user';
-import useLogin from 'hooks/login';
-import ChatlineAccessRestriction from 'components/chatwoot/chatline-access-restriction';
 const OrderConfirmationPopupWidget = ({
   orderDetails,
   navigation,
@@ -57,7 +57,7 @@ const OrderConfirmationPopupWidget = ({
         setLoading(false);
         if (error?.response?.status === 401){
           handleLogout();
-          navigation.navigate('CartScreen');
+          router.push('/CartScreen');
         }
       });
   }
@@ -123,10 +123,6 @@ const OrderConfirmationPopupWidget = ({
         chatting_from: `thank_you_page_${Platform.OS}_app`,
       };
 
-      //To make it future proof, once deeplink available for the app;
-      if (false) {
-        customAttributes.campaign_source = 'campaign_source';
-      }
       setUserCustomAttributes(customAttributes);
       setPrimeUserDetails({
         avatar_url: '',

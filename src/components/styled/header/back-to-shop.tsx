@@ -5,6 +5,7 @@ import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
 import { AppStackDefinition } from 'routes/definitions';
 
 import { StyledButton } from '@components/base/button/styled';
+import { router } from 'expo-router';
 import { CustomText } from '../../../../AndroidFontFix';
 
 const styles = StyleSheet.create({
@@ -33,7 +34,7 @@ const BackToShopIcon = ({
   title: string;
   navigation: NativeStackNavigationProp<AppStackDefinition>;
 }) => (
-  <StyledButton onPress={() => navigation.navigate('index')}>
+  <StyledButton onPress={() => router.push('/')}>
     <View style={styles.container}>
       <CloseSvg />
         {title ? <CustomText style={styles.topBarTitle}>{title}</CustomText> : null}

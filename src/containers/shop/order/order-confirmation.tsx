@@ -30,6 +30,7 @@ import { convertToRupees } from 'utils/currency-utils';
 import { FBTrackingService } from 'utils/fb-tracking';
 import { GATrackingService } from 'utils/ga-tracking';
 
+import { router } from 'expo-router';
 import useLogin from 'hooks/login';
 import { fetchCheckoutByIdService } from 'services/checkout';
 import { CustomText } from '../../../../AndroidFontFix';
@@ -203,7 +204,7 @@ const OrderConfirmation = ({ navigation }): React.ReactElement => {
       setLoading(false);
       if(err?.response?.status === 401){
         handleLogout();
-        navigation.navigate('CartScreen');
+        router.push('/CartScreen');
       }
     })
   };
@@ -218,7 +219,7 @@ const OrderConfirmation = ({ navigation }): React.ReactElement => {
     fetchCheckout();
 
     const backAction = () => {
-      navigation.navigate('index');
+      router.push('/');
       return true;
     };
 

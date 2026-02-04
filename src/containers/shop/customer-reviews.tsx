@@ -426,7 +426,7 @@ const CustomerReviews = ({
                     productImageUrl: product.image,
                   },
                 });
-                // navigation.navigate('WriteAReview', {
+                // router.push('WriteAReview', {
                 //   productId: product?.id,
                 //   productTitle: product.title,
                 //   productImageUrl: product.image,
@@ -469,7 +469,7 @@ const CustomerReviews = ({
             </Pressable>
             {/* <SecondaryButton
               onAction={() => {
-                navigation.navigate('AskAQuestion', {
+                router.push('AskAQuestion', {
                   productId: product?.id,
                   productTitle: product?.title,
                   productImageUrl: product?.image,

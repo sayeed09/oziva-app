@@ -19,11 +19,11 @@ const CategoriesThumbnails = ({ navigation, spotlightCategoryList }) => (
           <Pressable
             onPress={() => {
               if (category.link.split('collections/').length > 1) {
-                // navigation.navigate('Concerns', {
+                // router.push('Concerns', {
                 //   collectionHandle: category.link.split('collections/')[1],
                 // });
                 router.push({
-                  pathname: '/Concerns',
+                  pathname: '/concerns',
                   params: {
                     collectionHandle: category.link.split('collections/')[1],
                   },

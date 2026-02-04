@@ -1,12 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
+import { trackMoEngageAppEvent } from '@utils/common';
+import { Box, Text } from 'components/base/foundation';
+import { useNotificationState } from 'context/notifications';
+import { router } from 'expo-router';
 import React from 'react';
+import { Pressable } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack';
-import { useNavigation } from '@react-navigation/native';
-import { Box, Text } from 'components/base/foundation';
 import { AppStackDefinition } from 'routes/definitions';
-import { trackMoEngageAppEvent } from '@utils/common';
-import { useNotificationState } from 'context/notifications';
-import { Pressable } from 'react-native';
 
 interface Props {
   balance: number;
@@ -23,7 +24,7 @@ const CashSummary = ({ balance }: Props) => {
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('OZivaCash');
+    router.push('/OZivaCash');
   }
   return (
     <Pressable

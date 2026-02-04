@@ -24,13 +24,15 @@ const TrustBadges = () => {
 
 const styles = StyleSheet.create({
     iconsContainer: {
+        display: 'flex',
+        width: '100%',
         flexDirection: "row",
         justifyContent: "space-around",
     },
     iconCol: {
         alignItems: "center",
         marginVertical: 4,
-        width: "40%",
+        // width: "40%",
     },
     iconImage: {
         width: 44,

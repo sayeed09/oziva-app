@@ -19,6 +19,7 @@ import ListItem from '@components/elements/lists/item';
 import Loader from '@components/elements/loader/loader';
 import { FullPageErrorFallback } from '@components/shared/error';
 import { useModalsDispatch, useModalsState } from '@context/modals';
+import { router } from 'expo-router';
 import useLogin from 'hooks/login';
 import { UserProfileResponseModel } from 'models/auth';
 import { getOZivaCashService, getUserProfileDataService } from 'services/user';
@@ -57,7 +58,7 @@ const OZivaCash = ({
       setError(error)
       if (error?.response?.status === 401) {
         handleLogout();
-        navigation.navigate('ProfileScreen');
+        router.push('/profile');
       }
     })
   }
@@ -74,7 +75,7 @@ const OZivaCash = ({
         setProfileLoading(false);
         if (error?.response?.status === 401) {
           handleLogout();
-          navigation.navigate('ProfileScreen');
+          router.push('/profile');
         }
       });
   }

@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'context/auth';
+import React, { useEffect, useState } from 'react';
 
-import { loginSuccessful, setLoginModal } from '@actions/modals';
 import PrimaryButton from '@components/elements/button/primary-Button';
 import {
   primaryOrange,
 } from '@components/styles/colors';
 import { useModalsDispatch } from '@context/modals';
 import { trackMoEngageAppEvent } from '@utils/common';
-import { useNotificationState } from 'context/notifications';
-import PrimeActive from './prime-active';
-import PrimeNever from './prime-never';
-import PrimeExpired from './prime-expired';
-import PrimeFreeTrial from './prime-free-trial';
-import { Platform, SafeAreaView, ScrollView, View } from 'react-native';
-import { List } from 'react-native-paper';
-import { chatWootBaseURL, chatWootWebsiteToken, TermsAndConditions } from 'utils/constants';
-import { commonStyles } from 'styles/common';
-import { PrimeStyles } from 'styles/prime';
+import ChatlineAccessRestriction from 'components/chatwoot/chatline-access-restriction';
 import Loader from 'components/elements/loader/loader';
+import { useNotificationState } from 'context/notifications';
+import { router } from 'expo-router';
+import useLogin from 'hooks/login';
 import { UserProfileResponseModel } from 'models/auth';
 import { ICustomAttributes } from 'models/chatwoot';
+import { SafeAreaView, ScrollView, View } from 'react-native';
+import { List } from 'react-native-paper';
 import { getUserProfileDataService, userAuthCheckService } from 'services/user';
-import useLogin from 'hooks/login';
-import ChatlineAccessRestriction from 'components/chatwoot/chatline-access-restriction';
+import { commonStyles } from 'styles/common';
+import { PrimeStyles } from 'styles/prime';
+import { chatWootBaseURL, chatWootWebsiteToken, TermsAndConditions } from 'utils/constants';
+import PrimeActive from './prime-active';
+import PrimeExpired from './prime-expired';
+import PrimeFreeTrial from './prime-free-trial';
+import PrimeNever from './prime-never';
 
 const OZivaPrime = ({ navigation }) => {
 
@@ -53,7 +53,7 @@ const OZivaPrime = ({ navigation }) => {
         console.log("Error : ", error);
         if(error?.response?.status === 401){
           handleLogout();
-          navigation.navigate('ProfileScreen');
+          router.push('/profile');
         }
       });
   }

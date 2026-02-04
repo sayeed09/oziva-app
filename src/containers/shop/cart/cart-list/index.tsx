@@ -1,17 +1,16 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
-import { initCart, setCartLoading } from 'actions/cart';
+import { setCartLoading } from 'actions/cart';
 import SecondaryButton from 'components/elements/button/secondary-button';
 import HorizontalCard from 'components/product-cards/horizontal-card';
 import { useAuthState } from 'context/auth';
-import { initialState } from 'context/cart/CartReducer';
 import { useCheckoutState } from 'context/checkout';
 import { useNotificationState } from 'context/notifications';
 import useCart from 'hooks/cart';
 import { FetchCartParam } from 'models/cart/fetchcart';
 import { ProductCardModel } from 'models/product-card/card-model';
-import { CartItem, CartState } from 'models/shop/cart';
+import { CartItem } from 'models/shop/cart';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { GATrackingService } from 'utils/ga-tracking';
 import { CART_IMAGE } from 'utils/images';
 
@@ -19,9 +18,9 @@ import { useCartDispatch, useCartState } from '@context/cart/CartContext';
 import { getVariantIds, trackMoEngageAppEvent } from '@utils/common';
 import { height } from '@utils/constants';
 import { convertToRupees } from '@utils/currency-utils';
+import { router } from 'expo-router';
 import { fetchProductById } from 'services/product';
 import { filterVariants } from 'utils/cart';
-import OZModal from 'components/modal';
 
 const styles = StyleSheet.create({
   quantityBtn: {
@@ -229,7 +228,7 @@ const CartList = ({ navigation, setCartItemPopupProductId, setVariantDetails }):
               <View style={{ marginTop: 20, marginLeft: 50, marginRight: 50 }}>
                 <SecondaryButton
                   title="START SHOPPING"
-                  onAction={() => navigation.navigate('Concerns')}
+                  onAction={() => router.push('/concerns')}
                   style={{
                     borderColor: '#6BBD58',
                     justifyContent: 'center',

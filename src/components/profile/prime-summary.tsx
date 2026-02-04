@@ -1,14 +1,15 @@
+import { useNavigation } from '@react-navigation/native';
+import { trackMoEngageAppEvent } from '@utils/common';
+import { Box, Text } from 'components/base/foundation';
+import { useNotificationState } from 'context/notifications';
+import dayjs from 'dayjs';
+import { router } from 'expo-router';
 import React from 'react';
+import { Pressable } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack';
-import { useNavigation } from '@react-navigation/native';
-import { Box, Text } from 'components/base/foundation';
-import dayjs from 'dayjs';
 import { AppStackDefinition } from 'routes/definitions';
 import { CustomText } from '../../../AndroidFontFix';
-import { trackMoEngageAppEvent } from '@utils/common';
-import { useNotificationState } from 'context/notifications';
-import { Pressable } from 'react-native';
 
 export const primeStyles = {
   primeLeaf: {
@@ -28,7 +29,7 @@ const PrimeSummary = ({ endsOn, primeProfile }: { endsOn?: string, primeProfile?
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('OZivaPrime');
+    router.push('/OZivaPrime');
   };
   return (
     <Pressable

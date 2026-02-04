@@ -1,31 +1,32 @@
-import React, { useEffect, useState } from "react";
+import NetInfo from '@react-native-community/netinfo';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomePage from "containers/home";
-import Categories from "containers/categories";
-import HomeFilledIcon from "assets/images/icons/bottom-navigation/filled/home";
-import HomeLineIconComponent from "assets/images/icons/bottom-navigation/lined/home";
-import { trackMoEngageAppEvent } from "utils/common";
 import BagFilledIconComponent from "assets/images/icons/bottom-navigation/filled/bag";
 import CategoriesFilledIconComponent from "assets/images/icons/bottom-navigation/filled/categories";
 import ConsultFilledIcon from "assets/images/icons/bottom-navigation/filled/consult";
+import HomeFilledIcon from "assets/images/icons/bottom-navigation/filled/home";
+import ProfileIconFilled from "assets/images/icons/bottom-navigation/filled/profile-user";
 import BagLineIconComponent from "assets/images/icons/bottom-navigation/lined/bag";
 import CategoriesLineIconComponent from "assets/images/icons/bottom-navigation/lined/categories";
 import ConsultLineIcon from "assets/images/icons/bottom-navigation/lined/consult";
+import HomeLineIconComponent from "assets/images/icons/bottom-navigation/lined/home";
+import ProfileIconLined from "assets/images/icons/bottom-navigation/lined/profile-user";
+import BackIcon from "components/styled/header/back-icon";
+import HeaderLeft from "components/styled/header/header-Left";
+import HeaderRight from "components/styled/header/header-right";
+import Categories from "containers/categories";
+import Concerns from "containers/concerns";
 import Consult from "containers/consult";
+import HomePage from "containers/home";
+import ProfileContainer from "containers/profile";
 import { useModalsDispatch } from "context/modals";
 import { useNotificationState } from "context/notifications";
-import { LogBox, SafeAreaView } from "react-native";
+import { router } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { LogBox } from "react-native";
 import {
     SafeAreaProvider,
 } from 'react-native-safe-area-context';
-import Concerns from "containers/concerns";
-import HeaderLeft from "components/styled/header/header-Left";
-import HeaderRight from "components/styled/header/header-right";
-import BackIcon from "components/styled/header/back-icon";
-import ProfileContainer from "containers/profile";
-import ProfileIconLined from "assets/images/icons/bottom-navigation/lined/profile-user";
-import ProfileIconFilled from "assets/images/icons/bottom-navigation/filled/profile-user";
-import NetInfo from '@react-native-community/netinfo';
+import { trackMoEngageAppEvent } from "utils/common";
 
 const Tab = createBottomTabNavigator();
 
@@ -168,7 +169,7 @@ const HomeTabs = () => {
                         tabBarInactiveTintColor: 'gray',
                         unmountOnBlur: true,
                         headerLeft: () => (
-                            <BackIcon onPress={() => navigation.navigate('HomeScreen')} navigation={navigation} title="Chat" />
+                            <BackIcon onPress={() => router.push('/')} navigation={navigation} title="Chat" />
                         ),
 
                     })}
@@ -200,7 +201,7 @@ const HomeTabs = () => {
                         tabBarInactiveTintColor: 'gray',
                         unmountOnBlur: true,
                         headerLeft: () => (
-                            <BackIcon onPress={() => navigation.navigate('HomeScreen')} navigation={navigation} title="Profile" />
+                            <BackIcon onPress={() => router.push('/')} navigation={navigation} title="Profile" />
                         ),
 
                     })}

@@ -1,5 +1,11 @@
+import crashlytics from '@react-native-firebase/crashlytics';
+import { useNavigation } from '@react-navigation/native';
+import { router } from 'expo-router';
+import { ChatWootUser } from 'models/prime';
 import React, { useEffect, useState } from 'react';
+import * as Progress from 'react-native-progress';
 import WebView from 'react-native-webview';
+import { initiateWidgetOpen } from 'services/chatwoot';
 import {
   generateScripts,
   getMessage,
@@ -7,11 +13,6 @@ import {
   storeHelper,
 } from 'utils/chatwoot';
 import { chatWootWebsiteToken, width } from 'utils/constants';
-import * as Progress from 'react-native-progress';
-import { initiateWidgetOpen } from 'services/chatwoot';
-import crashlytics from '@react-native-firebase/crashlytics';
-import { ChatWootUser } from 'models/prime';
-import { useNavigation } from '@react-navigation/native'
 interface WebViewProps {
   websiteToken: string;
   baseUrl: string;
@@ -114,9 +115,9 @@ const ChatWootWebviewComponent = (props: WebViewProps) => {
             }
             if (type === 'close-widget') {
               closeModal(false);
-              if(screenName === 'OrderConfirmationScreen'){
-                navigation && navigation.navigate('OrderConfirmationScreen');
-              }else navigation.canGoBack()
+              if (screenName === 'OrderConfirmationScreen') {
+                navigation && router.push('/OrderConfirmationScreen');
+              } else navigation.canGoBack()
             }
           }
         }}

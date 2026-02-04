@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { setCartDeliveryCharge } from 'actions/cart';
 import { setPaymentError, setPaymentMethodsToShow } from 'actions/checkout';
 import { BaseView } from 'components/base/view';
@@ -13,30 +10,31 @@ import UPIPaymentMethodWhiteCard from 'components/payment/upi-payment-method-car
 import WalletPaymentMethodWhiteCard from 'components/payment/wallet-payment-method-card';
 import { Color, errorRed, errorRedBackground } from 'components/styles/colors';
 import { useCartDispatch, useCartState } from 'context/cart/CartContext';
-import { OFFER_ICON } from 'utils/images';
 import { useCheckoutDispatch, useCheckoutState } from 'context/checkout';
 import { useNotificationState } from 'context/notifications';
 import { getPaymentMethod } from 'models/payment';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, Text, View } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
-  convertToRupees,
-  formatCurrencyWithSymbol,
+  convertToRupees
 } from 'utils/currency-utils';
 import { GATrackingService } from 'utils/ga-tracking';
-import { DISCOUNT_ICON } from 'utils/images';
 
 import { trackMoEngageAppEvent } from '@utils/common';
 
-import { getCartLineItems } from '../common';
-import { commonStyles } from 'styles/common';
-import { useAuthState } from 'context/auth';
-import { PrimeMemberShipType } from 'models/prime';
-import OrderSummaryAccordion from 'components/order/order-summary-accordion';
 import crashlytics from '@react-native-firebase/crashlytics';
-import { incentiveAmountService } from 'services/checkout';
-import { IncentiveAmountPayload, IncentiveValue } from 'models/shop/checkout';
+import OrderSummaryAccordion from 'components/order/order-summary-accordion';
+import { useAuthState } from 'context/auth';
 import { useModalsDispatch } from 'context/modals';
+import { router } from 'expo-router';
 import useLogin from 'hooks/login';
+import { PrimeMemberShipType } from 'models/prime';
+import { IncentiveAmountPayload, IncentiveValue } from 'models/shop/checkout';
+import { incentiveAmountService } from 'services/checkout';
+import { commonStyles } from 'styles/common';
 import FooterDetails from '../cart/cart-list/footer-details';
+import { getCartLineItems } from '../common';
 
 const PaymentMethod = ({ navigation }): React.ReactElement => {
   const { trackingTransparency } = useNotificationState();
@@ -69,14 +67,14 @@ const PaymentMethod = ({ navigation }): React.ReactElement => {
       setIncentiveValue(response);
       setLoading(false);
       if(response.status === 'COMPLETED'){
-        navigation.navigate('OrderConfirmationScreen');
+        router.push('/OrderConfirmationScreen');
       }
     }).catch(err => {
       console.log("Error : ", err);
       setLoading(false);
       if (err?.response?.status === 401) {
         handleLogout();
-        navigation.navigate('CartScreen');
+        router.push('/CartScreen');
       }
     })
   }

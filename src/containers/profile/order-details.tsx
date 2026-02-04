@@ -34,7 +34,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import { width } from '@utils/constants';
 import { formatCurrencyWithSymbol } from '@utils/currency-utils';
 import { useModalsDispatch } from 'context/modals';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import useCart from 'hooks/cart';
 import useLogin from 'hooks/login';
 import { IOrderDetail } from 'models/order/order-response';
@@ -67,7 +67,7 @@ const OrderDetails = ({
   navigation: any;
   route: any;
 }) => {
-  const { order } = route.params;
+  const { order } = useLocalSearchParams<{ order: string }>();
   const { handleAddToCart } = useCart();
   const modalsDispatch = useModalsDispatch();
   const { handleLogout } = useLogin();
@@ -100,6 +100,7 @@ const OrderDetails = ({
     });
   };
   const { cartItems } = useCartState();
+  let jsonOrder = order ? JSON.parse(order) : {};
   const {
     createdAt,
     total,
@@ -113,7 +114,7 @@ const OrderDetails = ({
     cancelledAt,
     financialStatus,
     orderNumber,
-  } = order;
+  } = jsonOrder;
 
   const [orderCancelled, setOrderCancelled] = useState(false);
   const [orderDetails, setOrderDetails] = useState<IOrderDetail>();
@@ -132,7 +133,7 @@ const OrderDetails = ({
     } catch (error: any) {
       if (error?.response?.status === 401) {
         handleLogout();
-        navigation.navigate('ProfileScreen');
+        router.push('/profile');
       }
     }
   }
@@ -156,7 +157,7 @@ const OrderDetails = ({
       setLoading(false);
       if (error?.response?.status === 401) {
         handleLogout();
-        navigation.navigate('ProfileScreen');
+        router.push('/profile');
       }
     })
   }
@@ -231,7 +232,7 @@ const OrderDetails = ({
                 <Pressable
                   onPress={() => {
                     crashlytics().log(`navigating on the product details screen from order details : ${item?.productId}`);
-                    // navigation.navigate('ProductDetails', {
+                    // router.push('ProductDetails', {
                     //   queryString: JSON.stringify(item?.productId),
                     //   productTitle: item.variantTitle,
                     // });
@@ -348,7 +349,7 @@ const OrderDetails = ({
           )}
           <SecondaryButton
             title="NEED HELP?"
-            onPress={() => navigation.navigate('Contact')}
+            onPress={() => router.push('/Contact')}
           />
         </Box>
         {/* {!cancelledAt && financialStatus?.toLowerCase() === 'pending' && ( */}
@@ -419,7 +420,7 @@ const OrderDetails = ({
             borderRadius={3}
             width="50%"
             onAction={() => {
-              navigation.navigate('CartScreen');
+              router.push('/CartScreen');
             }}
           />
         </View>

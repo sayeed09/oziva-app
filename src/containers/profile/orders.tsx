@@ -3,7 +3,7 @@ import { FlatList, ListRenderItem, Text } from 'react-native';
 // import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 
-import { loginSuccessful, setLoginModal } from '@actions/modals';
+import { setLoginModal } from '@actions/modals';
 import { Box, SafeBottomSpace } from '@components/base/foundation';
 import { BaseView } from '@components/base/view';
 import Loader from '@components/elements/loader/loader';
@@ -12,8 +12,9 @@ import { FullPageErrorFallback } from '@components/shared/error';
 import { useModalsDispatch, useModalsState } from '@context/modals';
 import { Order } from '@models/orders';
 import { height } from '@utils/constants';
-import { getOrderListService } from 'services/user';
+import { router } from 'expo-router';
 import useLogin from 'hooks/login';
+import { getOrderListService } from 'services/user';
 
 const renderOrder: ListRenderItem<Order> = ({ item }) => (
   <OrderSummary order={item} />
@@ -39,7 +40,7 @@ const Orders = ({ navigation }) => {
       setError(error);
       if(error?.response?.status === 401){
         handleLogout();
-        navigation.navigate('ProfileScreen');
+        router.push('/profile');
       }
     });
   }

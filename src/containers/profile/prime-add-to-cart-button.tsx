@@ -2,12 +2,12 @@ import { addProduct } from 'actions/cart';
 import PrimaryButton from 'components/elements/button/primary-Button';
 import { useCartDispatch } from 'context/cart/CartContext';
 import { useNotificationState } from 'context/notifications';
+import { router } from 'expo-router';
 import { ProductCatalogResponse } from 'models/product-details/product';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { fetchProductById } from 'services/product';
 import { trackMoEngageAppEvent } from 'utils/common';
 import { ozivaPrimeProductId } from 'utils/constants';
-import Navigation from 'routes/stack';
 
 interface IProps {
     text?: string;
@@ -57,7 +57,7 @@ const PrimeAddToCartButton = ({navigation, text}: IProps) => {
                             quantity: 1
                         }),
                     );
-                    navigation.navigate('CartScreen');
+                    router.push('/CartScreen');
                 }}
             />
         </>

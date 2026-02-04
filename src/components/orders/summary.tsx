@@ -1,16 +1,16 @@
-import React from 'react';
-import { Linking } from 'react-native';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { PrimaryButton, SecondaryButton } from 'components/base/buttons';
 import { Box, Hr, Image, Text } from 'components/base/foundation';
 import ListItem from 'components/elements/lists/item';
+import { router } from 'expo-router';
 import { isEmpty } from 'lodash';
 import { Order } from 'models/orders';
+import React from 'react';
+import { Linking, ScrollView } from 'react-native';
 import { AppStackDefinition } from 'routes/definitions';
 import { formatCurrencyWithSymbol } from 'utils/currency-utils';
-import { ScrollView } from 'react-native';
-import crashlytics from '@react-native-firebase/crashlytics';
 
 const styles = {
   image: {
@@ -89,7 +89,10 @@ const OrderSummary = ({ order }: { order: Order }) => {
             title="VIEW DETAILS"
             onPress={() => {
               crashlytics().log(`navigating on order details : ${order.id}`);
-              navigation.push('OrderDetails', { order })
+              router.push({
+                pathname: '/OrderDetails',
+                params: { order: JSON.stringify(order) }
+              })
             }}
           />
           <PrimaryButton

@@ -10,6 +10,7 @@ import { setRedirectToCheckout } from 'actions/auth';
 import { setLoginModal } from 'actions/modals';
 import { useModalsDispatch } from 'context/modals';
 import { useNotificationState } from 'context/notifications';
+import { router } from 'expo-router';
 import useLogin from 'hooks/login';
 import { CartItem } from 'models/shop/cart';
 import { CheckoutCartItem, CreateCheckoutPayload, ISubscriptionObject } from 'rest/checkout/mutations/create-checkout';
@@ -121,7 +122,7 @@ const CartBottomBar = ({ navigation, userAddressFetched }): React.ReactElement =
             bottomOffset: 70,
             type: 'success',
           });
-          navigation ? navigation.navigate('index') : null;
+          navigation ? router.push('/') : null;
           return;
         }
         checkoutId = checkoutData.data.checkout_id;
@@ -198,10 +199,10 @@ const CartBottomBar = ({ navigation, userAddressFetched }): React.ReactElement =
       try {
         setIsSubmitting(false);
         authDispatch(setRedirectToCheckout(false));
-        navigation ? navigation.navigate('AddressOrderSummaryScreen') : null;
+        navigation ? router.push('/AddressOrderSummaryScreen') : null;
       } catch (error: any) {
         authDispatch(setRedirectToCheckout(false));
-        navigation ? navigation.navigate('Addresses') : null;
+        navigation ? router.push('/Addresses') : null;
         if (error?.response?.status === 401) {
           handleLogout();
           setIsSubmitting(false);

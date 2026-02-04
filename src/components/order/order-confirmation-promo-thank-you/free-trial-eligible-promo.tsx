@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Text } from 'components/base/foundation';
 import { BaseView } from 'components/base/view';
 import WhiteCard from 'components/elements/card/white-card';
@@ -8,9 +7,11 @@ import {
   orderPromoLightGreen,
   primaryOrange,
 } from 'components/styles/colors';
+import { router } from 'expo-router';
+import React from 'react';
+import { Pressable } from 'react-native';
 import { width } from 'utils/constants';
 import { CustomText } from '../../../../AndroidFontFix';
-import { Pressable } from 'react-native';
 
 const FreeTrialEligiblePromo = ({ navigation }): React.ReactElement => (
   <WhiteCard noBorderRadius style={{ marginBottom: 10 }}>
@@ -52,7 +53,7 @@ const FreeTrialEligiblePromo = ({ navigation }): React.ReactElement => (
       <BaseView style={{ marginBottom: 10 }}>
         <Pressable
           onPress={() => {
-            navigation.navigate('OZivaPrime');
+            router.push('/OZivaPrime');
           }}
         >
           <BaseView

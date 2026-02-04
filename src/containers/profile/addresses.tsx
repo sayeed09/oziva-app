@@ -94,7 +94,7 @@ const Addresses = ({
       setError(error);
       if (error?.response?.status === 401) {
         handleLogout();
-        navigation.navigate(screenName === 'CartScreen' ? 'CartScreen' : 'ProfileScreen'); //To handle ProfileScreen and Checkout Screen navigation
+        router.push(screenName === 'CartScreen' ? '/CartScreen' : '/profile'); //To handle ProfileScreen and Checkout Screen navigation
       }
     }
   }
@@ -119,7 +119,7 @@ const Addresses = ({
     }
   };
   const handleEdit = (address) => {
-    // navigation.navigate('AddAddressScreen', {
+    // router.push('AddAddressScreen', {
     //   navigateTo: 'Addresses',
     //   address,
     //   isSubscription,
@@ -243,7 +243,7 @@ const Addresses = ({
     if (isSubscription) {
       checkoutDispatch(setSubscriptionAddress(checked));
       setIsSubmitting(false);
-      navigation.navigate('SubscriptionAddressOrderSummary');
+      // router.push('SubscriptionAddressOrderSummary');
     } else {
       let addressToPatch: CustomerAddressPayload = {
         ...checked,
@@ -275,7 +275,7 @@ const Addresses = ({
           }),
         );
         checkoutDispatch(updateAddress(checked));
-        navigation.navigate('AddressOrderSummaryScreen');
+        router.push('/AddressOrderSummaryScreen');
 
         setIsSubmitting(false);
       } catch (err: any) {
@@ -285,7 +285,7 @@ const Addresses = ({
         }
         if (err?.response?.status === 401) {
           handleLogout();
-          navigation.navigate(screenName === 'CartScreen' ? 'CartScreen' : 'ProfileScreen'); //To handle ProfileScreen and Checkout Screen navigation
+          router.push(screenName === 'CartScreen' ? '/CartScreen' : '/profile'); //To handle ProfileScreen and Checkout Screen navigation
         }
       }
     }
@@ -323,7 +323,7 @@ const Addresses = ({
                 },
               });
             }
-              //     navigation.navigate('AddAddressScreen', {
+              //     router.push('AddAddressScreen', {
               //   navigateTo: 'Addresses',
               // isSubscription: isSubscription,
               // screenName: screenName

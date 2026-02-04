@@ -1,16 +1,17 @@
+import { AxiosError } from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { RefreshControl, ScrollView } from 'react-native';
-import { AxiosError } from 'axios';
 
-import { loginSuccessful, setLoginModal } from '@actions/modals';
+import { setLoginModal } from '@actions/modals';
 import { Box, Hr } from '@components/base/foundation';
 import SwitchListItem from '@components/elements/lists/switch-list-item';
 import Loader from '@components/elements/loader/loader';
 import { FullPageErrorFallback } from '@components/shared/error';
 import { useModalsDispatch, useModalsState } from '@context/modals';
 import { NotificationSettings } from '@models/user';
-import { getNotificationService, postNotificationService } from 'services/user';
+import { router } from 'expo-router';
 import useLogin from 'hooks/login';
+import { getNotificationService, postNotificationService } from 'services/user';
 
 const NotificationSettingsContainer = ({ navigation }) => {
   const modalsDispatch = useModalsDispatch();
@@ -30,7 +31,7 @@ const NotificationSettingsContainer = ({ navigation }) => {
       console.log("Error : ", err);
       if(error?.response?.status === 401){
         handleLogout();
-        navigation.navigate('ProfileScreen');
+        router.push('/profile');
       }
     })
   }
@@ -57,7 +58,7 @@ const NotificationSettingsContainer = ({ navigation }) => {
       setError(error);
       if(error?.response?.status === 401){
         handleLogout();
-        navigation.navigate('ProfileScreen');
+        router.push('/profile');
       }
     })
   }

@@ -1,42 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text } from 'react-native';
+import PeopleAlsoBought from '@components/cart/people-also-bought';
+import Loader from '@components/elements/loader/loader';
 import CartList from '@containers/shop/cart/cart-list';
 import CartBottomBar from '@containers/shop/cart/cart-list/cart-bottom-bar';
 import CartPriceDetails from '@containers/shop/cart/cart-list/cart-price-details';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { initCart, setCartLoading, setStorageCartFetched } from 'actions/cart';
-import { useCartDispatch, useCartState } from 'context/cart/CartContext';
-import { initialState } from 'context/cart/CartReducer';
-import { CartState, IVariantDetailsState } from 'models/shop/cart';
-import PeopleAlsoBought from '@components/cart/people-also-bought';
 import { IBaseProps } from '@models/common';
-import LoginModal from 'components/login/standard/login-modal';
-import FooterDetails from './cart-list/footer-details';
-import Loader from '@components/elements/loader/loader';
-import { width } from 'utils/constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setRedirectToCheckout } from 'actions/auth';
+import { initCart, setCartLoading, setStorageCartFetched } from 'actions/cart';
+import { setUserAddressList } from 'actions/checkout';
 import { BaseView } from 'components/base/view';
-import TrustBadges from 'containers/trust-badges';
-import LinearGradient from 'react-native-linear-gradient';
+import CashCartOffer from 'components/cart/cart-cash-offer';
+import CartSavingInformation from 'components/cart/cart-savings-information';
+import PrimaryButton from 'components/elements/button/primary-Button';
+import LoginModal from 'components/login/standard/login-modal';
 import OZModal from 'components/modal';
 import CartConsultationContent from 'components/product-cards/horizontal-card/cart-consultation-popup';
 import CartItemPopupContent from 'components/product-cards/horizontal-card/cart-item-popup';
-import PrimaryButton from 'components/elements/button/primary-Button';
-import { View } from 'react-native';
-import SvgRenderer from 'react-native-svg-renderer';
-import { remainingProductsInStock } from 'utils/product';
-import { useModalsState } from 'context/modals';
-import { UserAddress } from 'models/shop/address';
-import { getAllAddressService } from 'services/address';
-import { setUserAddressList } from 'actions/checkout';
-import { useCheckoutDispatch } from 'context/checkout';
-import useLogin from 'hooks/login';
+import TrustBadges from 'containers/trust-badges';
 import { useAuthDispatch, useAuthState } from 'context/auth';
-import { setRedirectToCheckout } from 'actions/auth';
+import { useCartDispatch, useCartState } from 'context/cart/CartContext';
+import { initialState } from 'context/cart/CartReducer';
+import { useCheckoutDispatch } from 'context/checkout';
+import { useModalsState } from 'context/modals';
+import useLogin from 'hooks/login';
+import { UserAddress } from 'models/shop/address';
+import { CartState, IVariantDetailsState } from 'models/shop/cart';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import CartSavingInformation from 'components/cart/cart-savings-information';
-import CashCartOffer from 'components/cart/cart-cash-offer';
-import { convertToRupees } from 'utils/currency-utils';
+import SvgRenderer from 'react-native-svg-renderer';
+import { getAllAddressService } from 'services/address';
 import { cartService } from 'services/cart';
+import { width } from 'utils/constants';
+import { convertToRupees } from 'utils/currency-utils';
+import { remainingProductsInStock } from 'utils/product';
+import FooterDetails from './cart-list/footer-details';
 
 const loaderStyles = StyleSheet.create({
   overlay: {
@@ -232,6 +231,7 @@ const Cart: React.FunctionComponent<IBaseProps> = ({ navigation }) => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <CartList navigation={navigation} setCartItemPopupProductId={setCartItemPopupProductId} setVariantDetails={setVariantDetails} />
           {/* {!checkIfPrimeItemAddedInCart(cartItems) && cartItems.length > 0 && <OneMonthConsult setCartItemPopupProductId={setCartItemPopupProductId} setIsConsultClick={setIsConsultClick} />} */}
+          
           {cartItems.length > 0 && <LinearGradient
             colors={['#FFFFFF', '#F1FFEE']}
             start={{ x: 0.5, y: 1 }}

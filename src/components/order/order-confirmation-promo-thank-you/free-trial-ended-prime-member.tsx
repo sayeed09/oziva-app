@@ -1,5 +1,3 @@
-import React from 'react';
-import { Pressable } from 'react-native';
 import { BaseView } from 'components/base/view';
 import WhiteCard from 'components/elements/card/white-card';
 import { primeStyles } from 'components/profile/prime-summary';
@@ -8,9 +6,12 @@ import {
   orderPromoLightGreen,
   primaryOrange,
 } from 'components/styles/colors';
+import React from 'react';
+import { Pressable } from 'react-native';
 import { width } from 'utils/constants';
 
 import { Box, Text } from '@components/base/foundation';
+import { router } from 'expo-router';
 import { CustomText } from '../../../../AndroidFontFix';
 
 const FreeTrialEndedPrime = ({ navigation }): React.ReactElement => (
@@ -55,7 +56,7 @@ const FreeTrialEndedPrime = ({ navigation }): React.ReactElement => (
       </Text>
       <BaseView style={{ marginBottom: 10 }}>
         <Pressable onPress={() => {
-          navigation.navigate('OZivaPrime');
+          router.push('/OZivaPrime');
         }}>
           <BaseView
             row

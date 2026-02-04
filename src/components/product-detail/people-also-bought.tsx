@@ -1,22 +1,22 @@
-import { FlatList, Text, View } from 'react-native';
 import { commonStyles } from '@styles/common';
-import { ViewWrapper } from 'components/styled/common';
-import { ProductCardModel } from 'models/product-card/card-model';
 import { setProductList } from 'actions/product';
-import { fetchProducts } from 'services/product';
-import { useProductDispatch, useProductState } from 'context/product';
-import { Product } from 'models/product';
-import { trackMoEngageAppEvent } from 'utils/common';
-import SuccessMessageIconComponent from 'assets/images/icons/standard-icons/success-message-tick';
-import { Snackbar } from 'react-native-paper';
-import StandardCards from 'components/product-cards/standard-card';
-import { useShopDispatch, useShopState } from 'context/shop';
 import { setSnackbarVisible } from 'actions/shop';
-import React, { useEffect, useState } from 'react';
-import { cartService } from 'services/cart';
+import SuccessMessageIconComponent from 'assets/images/icons/standard-icons/success-message-tick';
+import StandardCards from 'components/product-cards/standard-card';
+import { ViewWrapper } from 'components/styled/common';
 import { useModalsDispatch } from 'context/modals';
-import { setLoginModal } from 'actions/modals';
+import { useProductDispatch, useProductState } from 'context/product';
+import { useShopDispatch, useShopState } from 'context/shop';
+import { router } from 'expo-router';
 import useLogin from 'hooks/login';
+import { Product } from 'models/product';
+import { ProductCardModel } from 'models/product-card/card-model';
+import React, { useEffect, useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
+import { Snackbar } from 'react-native-paper';
+import { cartService } from 'services/cart';
+import { fetchProducts } from 'services/product';
+import { trackMoEngageAppEvent } from 'utils/common';
 
 interface IProps {
   variantIds: string[];
@@ -46,7 +46,7 @@ const ProductPeopleAlsoBought = (props: IProps) => {
       );
     }).catch(err => {
       console.log("Err : ", err);
-      if(err?.response?.status === 401){
+      if (err?.response?.status === 401) {
         handleLogout();
       }
     })
@@ -147,7 +147,7 @@ const ProductPeopleAlsoBought = (props: IProps) => {
           label: 'View Cart',
           color: 'red',
           onPress: () => {
-            props.navigation.navigate('CartScreen');
+            router.push('/CartScreen');
           },
         }}
         duration={1000}

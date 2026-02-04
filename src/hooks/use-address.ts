@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useCheckoutDispatch } from 'context/checkout';
 import { setUserAddressList, updateAddress } from 'actions/checkout';
-import { deleteUserAddressService, fetchCityStateFromPincode, getAllAddressService } from 'services/address';
-import useLogin from './login';
-import { UNSERVICEABLE_PINCODE } from 'utils/constants';
+import { useCheckoutDispatch } from 'context/checkout';
+import { router } from 'expo-router';
 import { UserAddress } from 'models/shop/address';
+import { useEffect, useState } from 'react';
+import { deleteUserAddressService, fetchCityStateFromPincode, getAllAddressService } from 'services/address';
+import { UNSERVICEABLE_PINCODE } from 'utils/constants';
+import useLogin from './login';
 
 export const useAddress = (navigation) => {
 
@@ -31,7 +32,7 @@ export const useAddress = (navigation) => {
             console.error("Error : ", error);
             if (error?.response?.status === 401) {
                 handleLogout();
-                navigation.navigate('CartScreen');
+                router.push('CartScreen');
             }
         }
     };
@@ -84,7 +85,7 @@ export const useAddress = (navigation) => {
             console.log("Error : ", error);
             if (error?.response?.status === 401) {
                 handleLogout();
-                navigation.navigate(screenName === 'CartScreen' ? 'CartScreen' : 'ProfileScreen'); //To handle ProfileScreen and Checkout Screen navigation
+                router.push(screenName === 'CartScreen' ? '/CartScreen' : "/(tabs)/profile"); //To handle ProfileScreen and Checkout Screen navigation
             }
         }
     }

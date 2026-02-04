@@ -157,7 +157,7 @@ const WalletPaymentMethodWhiteCard = ({
       RazorpayCheckout.open(options)
         .then(async data => {
           checkoutDispatch(setIsPaymentProcessing(true));
-          // navigation.navigate('OrderInProgressScreen', {
+          // router.push('OrderInProgressScreen', {
           //   paymentId: data.razorpay_payment_id,
           // });
           router.push({
@@ -186,7 +186,7 @@ const WalletPaymentMethodWhiteCard = ({
       );
       if (error?.response?.status === 401) {
         handleLogout();
-        navigation.navigate('CartScreen');
+        router.push('/CartScreen');
       }
     }
     trackContinueShopping(

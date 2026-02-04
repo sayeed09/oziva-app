@@ -1,10 +1,11 @@
 import { setIsCartUpgraded } from 'actions/cart';
 import { useCartDispatch, useCartState } from 'context/cart/CartContext';
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import SvgRenderer from 'react-native-svg-renderer';
-import { width } from 'utils/constants';
 import { commonStyles } from 'styles/common';
+import { width } from 'utils/constants';
 
 const routeArray = [{ screenName: 'CartScreen', name: 'Cart', isActive: false }, { screenName: 'AddressOrderSummaryScreen', name: 'Address', isActive: false }, { screenName: 'PaymentMethodScreen', name: 'Payment', isActive: false }];
 
@@ -46,7 +47,7 @@ const StepperHeader = ({ navigation }) => {
                         <View>
                             <TouchableOpacity
                                 style={commonStyles.pl16}
-                                onPress={() => navigation.goBack()}>
+                                onPress={() => router.back()}>
                                 <SvgRenderer
                                     style={styles.leftArrowIcon}
                                     source={{ uri: 'https://cdn.shopify.com/s/files/1/2393/2199/files/arrow.svg?v=1755707998' }}
@@ -56,7 +57,7 @@ const StepperHeader = ({ navigation }) => {
                         <View style={[commonStyles.flex, commonStyles.flexRow, commonStyles.alignCenter, styles.stepperContainer, commonStyles.justifySpaceAround]}>
                             <View>
                                 <TouchableOpacity style={styles.stepItem}
-                                    onPress={() => { navigation.navigate('CartScreen') }}>
+                                    onPress={() => { router.push('/CartScreen') }}>
                                     <Image
                                         source={{
                                             uri: 'https://cdn.shopify.com/s/files/1/2393/2199/files/greentick.png?v=1756792234'
@@ -69,7 +70,7 @@ const StepperHeader = ({ navigation }) => {
                                 <TouchableOpacity style={styles.stepItem}
                                     onPress={() => {
                                         if (currentRouteName === 'PaymentMethodScreen')
-                                            navigation.navigate('AddressOrderSummaryScreen')
+                                            router.push('/AddressOrderSummaryScreen')
                                     }}>
                                     <Image
                                         source={{
@@ -91,7 +92,7 @@ const StepperHeader = ({ navigation }) => {
                         </View>
                     </View> : <View style={styles.emptyCartHeader}>
                         <TouchableOpacity
-                            onPress={() => navigation.goBack()}>
+                            onPress={() => router.back()}>
                             <SvgRenderer
                                 style={styles.leftArrowIcon}
                                 source={{ uri: 'https://cdn.shopify.com/s/files/1/2393/2199/files/arrow.svg?v=1755707998' }}

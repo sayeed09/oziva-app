@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
 import { setIsPaymentProcessing, setPaymentError } from 'actions/checkout';
 import { useCartState } from 'context/cart/CartContext';
 import { useCheckoutDispatch, useCheckoutState } from 'context/checkout';
+import { router } from 'expo-router';
 import { PaymentMethodType } from 'models/payment';
 import {
   CreateSubscriptionBody,
 } from 'models/product-details/subscription-plan-response';
+import { useState } from 'react';
+import RazorpayCheckout from 'react-native-customui';
 import {
   confirmSubscriptionRazorPayOrder,
   createSubscription,
   getSubscriptionPaymentCallback,
 } from 'services/checkout';
-import { PLATFORM_HEADERS } from 'utils/constants';
-import RazorpayCheckout from 'react-native-customui';
 import { trackMoEngageAppEvent } from 'utils/common';
-import { Platform } from 'react-native';
+import { PLATFORM_HEADERS } from 'utils/constants';
 import useLogin from './login';
 
 const usePayment = () => {
@@ -56,11 +56,11 @@ const usePayment = () => {
               confirmOrderBody,
             );
             if (confirmOrder?.data?.order_number) {
-              navigation.navigate('SubscriptionOrderConfirmationScreen', {
-                orderId: confirmOrder?.data?.order_number,
-                nextOrder: createSubscriptionResponse?.data?.next_order,
-                subscriptionId: createSubscriptionResponse?.data?.id,
-              });
+              // router.push('SubscriptionOrderConfirmationScreen', {
+              //   orderId: confirmOrder?.data?.order_number,
+              //   nextOrder: createSubscriptionResponse?.data?.next_order,
+              //   subscriptionId: createSubscriptionResponse?.data?.id,
+              // });
             } else {
               checkoutDispatch(setIsPaymentProcessing(false));
               checkoutDispatch(setPaymentError('payment error'));
@@ -77,7 +77,7 @@ const usePayment = () => {
           checkoutDispatch(setPaymentError('payment error'));
           if(error?.response?.status === 401){
             handleLogout();
-            navigation.navigate('CartScreen');
+            router.push('/CartScreen');
           }
         });
     } else if (createSubscriptionResponse) {
@@ -87,11 +87,11 @@ const usePayment = () => {
       if (codCallback) {
         const orderId = codCallback?.data?.order_number;
         if (orderId) {
-          navigation.navigate('SubscriptionOrderConfirmationScreen', {
-            orderId,
-            nextOrder: createSubscriptionResponse?.data?.next_order,
-            subscriptionId: createSubscriptionResponse?.data?.id,
-          });
+          // router.push('/SubscriptionOrderConfirmationScreen', {
+          //   orderId,
+          //   nextOrder: createSubscriptionResponse?.data?.next_order,
+          //   subscriptionId: createSubscriptionResponse?.data?.id,
+          // });
         } else {
           checkoutDispatch(setIsPaymentProcessing(false));
           checkoutDispatch(setPaymentError('payment error'));

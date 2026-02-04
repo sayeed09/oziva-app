@@ -6,7 +6,7 @@ import HeaderRight from 'components/styled/header/header-right';
 import SliderSkeleton from 'containers/shop/products-slider-skeleton';
 import { useShopDispatch, useShopState } from 'context/shop';
 import { Image } from 'expo-image';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import {
   CollectionByHandleResponse
 } from 'models/collection';
@@ -87,7 +87,7 @@ const Collections = ({ navigation, route }) => {
           label: 'View Cart',
           color: 'red',
           onPress: () => {
-            navigation.navigate('CartScreen');
+            router.push('/CartScreen');
           },
         }}
         duration={1000}

@@ -42,7 +42,7 @@ const HomeCleanProtein = ({ cleanProteinList, navigation }) => {
                 <Pressable
                   onPress={() => {
                     if (link.split('collections/').length > 1) {
-                      // navigation.navigate('Collection', {
+                      // router.push('Collection', {
                       //   handle: link.split('collections/')[1],
                       //   banner,
                       // });

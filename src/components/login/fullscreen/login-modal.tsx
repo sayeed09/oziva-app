@@ -56,7 +56,7 @@ const LoginModal = (): React.ReactElement => {
               visible={showPopUp}
               onRequestClose={() => {
                 modalsDispatch(setLoginModal(false));
-                navigation.goBack();
+                router.back();
               }}
               setModalVisible={() => modalsDispatch(setLoginModal(false))}
               transparent

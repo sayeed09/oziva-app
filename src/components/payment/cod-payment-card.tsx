@@ -1,5 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Text, TouchableNativeFeedback, View } from 'react-native';
 import {
   setIsPaymentProcessing,
   setPaymentError,
@@ -11,25 +9,27 @@ import WhiteCard from '@components/elements/card/white-card';
 import { useCartState } from '@context/cart/CartContext';
 import { useCheckoutDispatch, useCheckoutState } from '@context/checkout';
 import { PaymentMethodType } from '@models/payment';
+import crashlytics from '@react-native-firebase/crashlytics';
 import {
   checkForCodDisabledVariants,
   createRazorpayOrderService,
 } from '@services/checkout';
-import { trackContinueShopping } from './comman';
-import PaymentTitle from './payment-title';
-import { useNotificationState } from 'context/notifications';
 import Loader from 'components/elements/loader/loader';
+import { Color } from 'components/styles/colors';
+import { ShimmerButtonWrapper } from 'containers/shop/cart/cart-list/shimmer-effect';
+import { useModalsDispatch } from 'context/modals';
+import { useNotificationState } from 'context/notifications';
+import { router } from 'expo-router';
+import useLogin from 'hooks/login';
+import React, { useEffect, useRef, useState } from 'react';
+import { Text, TouchableNativeFeedback, View } from 'react-native';
+import { commonStyles } from 'styles/common';
 import {
   ozivaPrimeProductId,
 } from 'utils/constants';
-import { commonStyles } from 'styles/common';
-import crashlytics from '@react-native-firebase/crashlytics';
-import { setLoginModal } from 'actions/modals';
-import { useModalsDispatch } from 'context/modals';
-import useLogin from 'hooks/login';
-import { ShimmerButtonWrapper } from 'containers/shop/cart/cart-list/shimmer-effect';
+import { trackContinueShopping } from './comman';
+import PaymentTitle from './payment-title';
 import Policies from './policies';
-import { Color } from 'components/styles/colors';
 
 interface Props {
   navigation: any;
@@ -105,7 +105,7 @@ const CODPaymentMethodWhiteCard = ({
       checkoutDispatch(setPaymentMethod(paymentMethod));
 
       if (codOrderStatus === 'success') {
-        navigation.navigate('OrderConfirmationScreen');
+        router.push('/OrderConfirmationScreen');
         checkoutDispatch(setIsPaymentProcessing(false));
         crashlytics().log(`COD order success : ${JSON.stringify(cartItems)}`);
       } else {
@@ -124,7 +124,7 @@ const CODPaymentMethodWhiteCard = ({
 
       if (e?.response?.status === 401) {
         handleLogout();
-        navigation.navigate('CartScreen');
+        router.push('/CartScreen');
       }
     }
     trackContinueShopping(

@@ -44,6 +44,7 @@ import OzivaCashIcon from 'assets/images/icons/profile-icon/oziva-cash-logo';
 import TrackOrderIcon from 'assets/images/icons/profile-icon/track-order-icon';
 import ChatlineAccessRestriction from 'components/chatwoot/chatline-access-restriction';
 import LoginModal from 'components/login/fullscreen/login-modal';
+import { router } from 'expo-router';
 import useLogin from 'hooks/login';
 import { UserProfileResponseModel } from 'models/auth';
 import { ICustomAttributes } from 'models/chatwoot';
@@ -194,14 +195,14 @@ const ProfileContainer = ({
     return <LoginModal />;
   }
 
-  const navigateToEditProfile = () => navigation.navigate('EditProfile');
+  const navigateToEditProfile = () => router.push('/EditProfile');
   const navigateToSupport = () => {
     trackMoEngageAppEvent({
       event: `support_squad_clicked_app`,
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('Support');
+    router.push('/Support');
   };
   const navigateToOrders = () => {
     trackMoEngageAppEvent({
@@ -209,7 +210,7 @@ const ProfileContainer = ({
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('Orders');
+    router.push('/Orders');
   };
   const navigateToOffers = () => {
     trackMoEngageAppEvent({
@@ -217,7 +218,7 @@ const ProfileContainer = ({
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('Offers');
+    router.push('/Offers');
   };
   const navigateToAddresses = () => {
     trackMoEngageAppEvent({
@@ -225,7 +226,10 @@ const ProfileContainer = ({
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('Addresses', { isView: true, screenName: 'ProfileScreen' });
+    router.push({
+      pathname: '/Addresses',
+      params: { isView: 'true', screenName: 'ProfileScreen' }
+    });
   };
   const navigateToNotificationSettings = () => {
     trackMoEngageAppEvent({
@@ -233,7 +237,7 @@ const ProfileContainer = ({
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('NotificationSettings');
+    router.push('/NotificationSettings');
   };
 
   const handleLogoutFunction = () => {
@@ -279,7 +283,7 @@ const ProfileContainer = ({
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('Consult');
+    router.push('/consult');
   };
 
   const navigateToDetailsCash = () => {
@@ -288,7 +292,7 @@ const ProfileContainer = ({
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('OZivaCash');
+    router.push('/OZivaCash');
   };
   const navigateToBlog = () => {
     trackMoEngageAppEvent({
@@ -296,7 +300,7 @@ const ProfileContainer = ({
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('OZivaBlog');
+    router.push('/OZivaBlog');
   };
 
   const navigateToHelpDesk = () => {
@@ -305,7 +309,7 @@ const ProfileContainer = ({
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('HelpDesk');
+    router.push('/HelpDesk');
   }
 
   const navigateToContactUs = () => {
@@ -314,7 +318,7 @@ const ProfileContainer = ({
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('Contact');
+    router.push('/Contact');
   }
 
   const navigateToPrivacyPolicy = () => {
@@ -323,7 +327,7 @@ const ProfileContainer = ({
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('Privacy');
+    router.push('/Privacy');
   }
 
   const navigateTermsCondition = () => {
@@ -332,7 +336,7 @@ const ProfileContainer = ({
       values: [],
       trackingTransparency,
     });
-    navigation.navigate('Terms');
+    router.push('/Terms');
   }
   return (
     <>

@@ -36,7 +36,7 @@ const StandardCards = ({
             variantId: productCardModel?.variantId,
           },
         });
-        //  navigation.navigate('ProductDetails', {
+        //  router.push('ProductDetails', {
         //   queryString: JSON.stringify(productCardModel?.productId),
         //   productTitle: productCardModel?.title,
         //   variantId: productCardModel?.variantId as string,

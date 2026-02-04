@@ -20,6 +20,7 @@ import { UserDetails } from '@models/user';
 import { useAuthDispatch } from 'context/auth';
 import { useCheckoutDispatch } from 'context/checkout';
 import { useModalsDispatch } from 'context/modals';
+import { router } from 'expo-router';
 import useLogin from 'hooks/login';
 import { UserProfileResponseModel } from 'models/auth';
 import { getUserProfileDataService, updateUserProfileService } from 'services/user';
@@ -57,12 +58,12 @@ const EditProfile = ({
   const updateUserProfile = (profilePayload: UserDetails) => {
     updateUserProfileService(profilePayload).then(() => {
       Toast.show({ type: 'info', text1: 'Updated profile' });
-      navigation.goBack();
+      router.back();
     }).catch(error => {
       Toast.show({ type: 'error', text1: 'Error, could not update' });
       if (error?.response?.status === 401) {
         handleLogout();
-        navigation.navigate('ProfileScreen');
+        router.push('/profile');
       }
     })
   }
@@ -76,7 +77,7 @@ const EditProfile = ({
         console.log("Error while getting user profile : ", error);
         if (error?.response?.status === 401) {
           handleLogout();
-          navigation.navigate('ProfileScreen');
+          router.push('/profile');
         }
       });
   }

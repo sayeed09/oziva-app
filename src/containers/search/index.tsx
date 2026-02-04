@@ -18,6 +18,7 @@ import { useCartState } from 'context/cart/CartContext';
 import { useNotificationState } from 'context/notifications';
 import { useSearchState } from 'context/search';
 import { useShopDispatch, useShopState } from 'context/shop';
+import { router } from 'expo-router';
 import { Collection, Product } from 'models/collection';
 import { ProductCardModel } from 'models/product-card/card-model';
 import { ISearchPayload, ISearchResponse, ISearchResultProduct } from 'models/search';
@@ -180,7 +181,7 @@ const Search = ({ navigation, route }) => {
           </View>
           <View style={{ flex: 0.1, alignItems: 'center', justifyContent: 'center' }}>
             <StyledActionButton onPress={() => {
-              navigation.navigate('CartScreen')
+              router.push('CartScreen')
             }}>
               <View style={{ paddingHorizontal: 10 }}>
                 {itemCount !== 0 && (
@@ -366,7 +367,7 @@ const Search = ({ navigation, route }) => {
           label: 'View Cart',
           color: 'red',
           onPress: () => {
-            navigation.navigate('CartScreen');
+            router.push('/CartScreen');
           },
         }}
         duration={10000}>

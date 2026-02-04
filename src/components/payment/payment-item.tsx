@@ -1,9 +1,10 @@
+import { setPaymentMethod } from 'actions/checkout';
+import { RadioAction, RadioCheck } from 'components/base/checkbox/styled';
+import { useCheckoutDispatch, useCheckoutState } from 'context/checkout';
+import { router } from 'expo-router';
+import { PaymentMethodType } from 'models/payment';
 import React, { useEffect, useState } from 'react';
 import { Text, TouchableNativeFeedback, View } from 'react-native';
-import { setPaymentMethod } from 'actions/checkout';
-import { useCheckoutDispatch, useCheckoutState } from 'context/checkout';
-import { PaymentMethodType } from 'models/payment';
-import { RadioAction, RadioCheck } from 'components/base/checkbox/styled';
 
 interface Props {
   navigation: any;
@@ -118,7 +119,7 @@ const PaymentItem = ({
                   By placing order, you agree that you have read and accepted
                   our{' '}
                   <Text
-                    onPress={() => navigation.navigate('Terms')}
+                    onPress={() => router.push('/Terms')}
                     style={{ color: '#6BBD58' }}
                   >
                     {' '}
@@ -126,7 +127,7 @@ const PaymentItem = ({
                   </Text>
                   and{' '}
                   <Text
-                    onPress={() => navigation.navigate('Privacy')}
+                    onPress={() => router.push('/Privacy')}
                     style={{ color: '#6BBD58' }}
                   >
                     {' '}
