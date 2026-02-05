@@ -1,11 +1,12 @@
 import React from 'react';
 import { Animated, StyleSheet } from 'react-native';
-import { PinchGestureHandler, State } from 'react-native-gesture-handler';
+import { State } from 'react-native-gesture-handler';
 
-import { height, width } from '@utils/constants';
+import { width } from '@utils/constants';
+import { useLocalSearchParams } from 'expo-router';
 
 export const ProductImages = ({ route }) => {
-  const { imageUrl } = route?.params;
+  const { imageUrl } = useLocalSearchParams();
   const scale = new Animated.Value(1);
 
   const onPinchEvent = Animated.event(
@@ -83,24 +84,24 @@ export const ProductImages = ({ route }) => {
         </Carousel>
       </WhiteCard> */}
 
-      <PinchGestureHandler
+      {/* <PinchGestureHandler
         onGestureEvent={onPinchEvent}
         onHandlerStateChange={onPinchStateChange}
-      >
-        <Animated.View style={StyleSheet.absoluteFill}>
-          <Animated.Image
-            source={{
-              uri: imageUrl,
-            }}
-            style={{
-              ...StyleSheet.absoluteFillObject,
-              width,
-              resizeMode: 'contain',
-              transform: [{ scale }],
-            }}
-          />
-        </Animated.View>
-      </PinchGestureHandler>
+      > */}
+      <Animated.View style={StyleSheet.absoluteFill}>
+        <Animated.Image
+          source={{
+            uri: imageUrl,
+          }}
+          style={{
+            ...StyleSheet.absoluteFillObject,
+            width,
+            resizeMode: 'contain',
+            transform: [{ scale }],
+          }}
+        />
+      </Animated.View>
+      {/* </PinchGestureHandler> */}
     </>
   );
 };
