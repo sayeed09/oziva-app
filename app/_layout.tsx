@@ -17,6 +17,7 @@ import { ProductProvider } from 'context/product';
 import { SearchProvider } from 'context/search';
 import { ShopProvider } from "context/shop";
 import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect, useState } from 'react';
 import {
   PermissionsAndroid,
@@ -30,6 +31,7 @@ import Toast from 'react-native-toast-message';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { getUser } from 'services/auth';
 import { useAxiosInterceptor } from 'services/axios';
+
 const queryClient = new QueryClient();
 
 export const unstable_settings = {
@@ -42,6 +44,7 @@ export default function RootLayout() {
   const [navigationRefReady, setNavigationRefReady] = useState(false);
 
   useEffect(() => {
+    SplashScreen.hideAsync();
     initializeMoe();
     if (!__DEV__)
       HandleFatalError.init();
